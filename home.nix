@@ -53,7 +53,7 @@
   
   programs.git = {
     enable = true;
-    userName = "Koehn";
+    userName = "chaezwav";
     userEmail = "koehnh@icloud.com";
   };
   
