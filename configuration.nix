@@ -62,7 +62,7 @@
 
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
-
+  
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     forceFullCompositionPipeline = true;

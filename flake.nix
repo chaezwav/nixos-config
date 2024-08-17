@@ -17,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nixos-cosmic, nix-index-database,  ... }@inputs: {
+  outputs = { self, nixpkgs, nixos-cosmic, home-manager, nix-index-database,  ... }@inputs: {
     nixosConfigurations.aesthetic = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ 
