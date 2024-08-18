@@ -1,18 +1,19 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot = {
-    kernelParams = [ "nvidia_drm.fbdev=1" ];
+    kernelParams = ["nvidia_drm.fbdev=1"];
     loader.grub = {
       enable = true;
       device = "/dev/sda";
@@ -23,8 +24,8 @@
     hostName = "aesthetic"; # Define your hostname.
     networkmanager.enable = true;
     firewall = {
-      allowedTCPPorts = [ 57621 ];
-      allowedUDPPorts = [ 5353 ];
+      allowedTCPPorts = [57621];
+      allowedUDPPorts = [5353];
     };
   };
 
@@ -50,7 +51,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
     xkb = {
@@ -59,9 +60,9 @@
     };
     excludePackages = with pkgs; [
       xterm
-    ]; 
+    ];
   };
-  
+
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
     forceFullCompositionPipeline = true;
@@ -94,7 +95,7 @@
   users.users.koehn = {
     isNormalUser = true;
     description = "Koehn Humphries";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
   };
 
@@ -108,23 +109,24 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-  
+
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
     # Certain features, including CLI integration and system authentication support,
     # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-    polkitPolicyOwners = [ "koehn" ];
+    polkitPolicyOwners = ["koehn"];
   };
+
+  programs.nix-ld.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = ["nix-command" "flakes"];
     optimise.automatic = true;
   };
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -137,25 +139,27 @@
       git
       bat
     ];
-   gnome.excludePackages = (with pkgs; [
-     gnome-photos
-     gnome-tour
-     cheese
-     # gedit
-     # gnome-terminal
-     geary
-     epiphany
-     totem
-     evince
-     # gnome-console
-   ]) ++ (with pkgs.gnome; [
-     gnome-music
-     gnome-characters
-     tali # poker game
-     iagno # go game
-     hitori # sudoku game
-     atomix # puzzle game
-   ]);
+    gnome.excludePackages =
+      (with pkgs; [
+        gnome-photos
+        gnome-tour
+        cheese
+        # gedit
+        # gnome-terminal
+        geary
+        epiphany
+        totem
+        evince
+        # gnome-console
+      ])
+      ++ (with pkgs.gnome; [
+        gnome-music
+        gnome-characters
+        tali # poker game
+        iagno # go game
+        hitori # sudoku game
+        atomix # puzzle game
+      ]);
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -178,5 +182,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "koehn";
@@ -25,14 +27,14 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      rswitch   = "sudo nixos-rebuild switch";
-      rboot     = "sudo nixos-rebuild boot && sudo reboot";
-      chome     = "gnome-text-editor ~/nixos-config/home.nix";
-      csys      = "gnome-text-editor ~/nixos-config/configuration.nix";
-      cflake    = "gnome-text-editor ~/nixos-config/flake.nix";
+      rswitch = "sudo nixos-rebuild switch";
+      rboot = "sudo nixos-rebuild boot && sudo reboot";
+      chome = "gnome-text-editor ~/nixos-config/home.nix";
+      csys = "gnome-text-editor ~/nixos-config/configuration.nix";
+      cflake = "gnome-text-editor ~/nixos-config/flake.nix";
     };
   };
-  
+
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
@@ -44,28 +46,45 @@
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    nix-direnv.enable = true;
   };
 
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
   };
-  
+
   programs.git = {
     enable = true;
     userName = "Koehn Humphries";
     userEmail = "koehnh@icloud.com";
     extraConfig = {
-        gpg.format = "ssh";
-        commit.gpgsign = true;
-        user.signingkey = "~/.ssh/id_ed25519.pub";
+      gpg.format = "ssh";
+      commit.gpgsign = true;
+      user.signingkey = "~/.ssh/id_ed25519.pub";
     };
   };
-  
+
+  programs.vscode = {
+    enable = true;
+    enableUpdateCheck = false;
+    extensions = with pkgs.vscode-extensions; [
+      mkhl.direnv
+      jnoortheen.nix-ide
+    ];
+    userSettings = {
+      nix.enableLanguageServer = true;
+      nix.serverPath = "${pkgs.nil}/bin/nil";
+      nix.formatterPath = "${pkgs.alejandra}/bin/alejandra";
+      nix.serverSettings.nil.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
+      terminal.integrated.shell.linux = "${pkgs.zsh}/bin/zsh";
+      editor.formatOnSave = true;
+    };
+  };
+
   home.packages = with pkgs; [
     tldr
     spotify
     inkscape
-    zed-editor
   ];
 }

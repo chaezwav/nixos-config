@@ -9,30 +9,39 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # nixos-cosmic = {
-      # url = "github:lilyinstarlight/nixos-cosmic";
-      # inputs.nixpkgs.follows = "nixpkgs";
+    # url = "github:lilyinstarlight/nixos-cosmic";
+    # inputs.nixpkgs.follows = "nixpkgs";
     # };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixfmt.url = "github:NixOS/nixfmt";
   };
 
-  outputs = { self, nixos ,nixpkgs, home-manager, nix-index-database,  ... }@inputs: {
+  outputs = {
+    self,
+    nixos,
+    nixpkgs,
+    home-manager,
+    nix-index-database,
+    nixfmt,
+    ...
+  } @ inputs: {
     nixosConfigurations.aesthetic = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ 
+      modules = [
         {
-            # nix.settings = {
-              # substituters = [ "https://cosmic.cachix.org/" ];
-              # trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            # };
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.koehn = import ./home.nix;
-            };
-            programs.nix-index-database.comma.enable = true;
+          # nix.settings = {
+          # substituters = [ "https://cosmic.cachix.org/" ];
+          # trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+          # };
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.koehn = import ./home.nix;
+          };
+          programs.nix-index-database.comma.enable = true;
         }
         # nixos-cosmic.nixosModules.default
         home-manager.nixosModules.home-manager
