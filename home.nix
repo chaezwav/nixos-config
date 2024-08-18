@@ -27,9 +27,9 @@
     shellAliases = {
       rswitch   = "sudo nixos-rebuild switch";
       rboot     = "sudo nixos-rebuild boot && sudo reboot";
-      chome     = "cosmic-edit ~/nixos-config/home.nix";
-      csys      = "cosmic-edit ~/nixos-config/configuration.nix";
-      cflake    = "cosmic-edit ~/nixos-config/flake.nix";
+      chome     = "gnome-text-editor ~/nixos-config/home.nix";
+      csys      = "gnome-text-editor ~/nixos-config/configuration.nix";
+      cflake    = "gnome-text-editor ~/nixos-config/flake.nix";
     };
   };
   

@@ -51,6 +51,8 @@
   services.xserver = {
     enable = true;
     videoDrivers = [ "nvidia" ];
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
     xkb = {
       layout = "us";
       variant = "";
@@ -59,9 +61,6 @@
       xterm
     ]; 
   };
-
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
   
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
@@ -138,25 +137,25 @@
       git
       bat
     ];
-   #  gnome.excludePackages = (with pkgs; [
-     #  gnome-photos
-     #  gnome-tour
-     #  cheese
-     #  gedit
-     #  gnome-terminal
-     #  geary
-     #  epiphany
-     #  totem
-     #  evince
-     #  gnome-console
-   #  ]) ++ (with pkgs.gnome; [
-     #  gnome-music
-     #  gnome-characters
-     #  tali # poker game
-     #  iagno # go game
-     #  hitori # sudoku game
-     #  atomix # puzzle game
-   #  ]);
+   gnome.excludePackages = (with pkgs; [
+     gnome-photos
+     gnome-tour
+     cheese
+     # gedit
+     # gnome-terminal
+     geary
+     epiphany
+     totem
+     evince
+     # gnome-console
+   ]) ++ (with pkgs.gnome; [
+     gnome-music
+     gnome-characters
+     tali # poker game
+     iagno # go game
+     hitori # sudoku game
+     atomix # puzzle game
+   ]);
   };
 
   # Some programs need SUID wrappers, can be configured further or are
