@@ -66,5 +66,6 @@
     tldr
     spotify
     inkscape
+    zed-editor
   ];
 }
