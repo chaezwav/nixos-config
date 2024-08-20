@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "koehn";
@@ -79,6 +75,7 @@
       nix.serverSettings.nil.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
       terminal.integrated.shell.linux = "${pkgs.zsh}/bin/zsh";
       editor.formatOnSave = true;
+      window.titleBarStyle = "native";
     };
   };
 

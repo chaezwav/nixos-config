@@ -25,9 +25,8 @@
     nixpkgs,
     home-manager,
     nix-index-database,
-    nixfmt,
     ...
-  } @ inputs: {
+  }: {
     nixosConfigurations.aesthetic = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
