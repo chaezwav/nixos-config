@@ -76,6 +76,8 @@
       terminal.integrated.shell.linux = "${pkgs.zsh}/bin/zsh";
       editor.formatOnSave = true;
       window.titleBarStyle = "native";
+      update.mode = "none";
+      git.autofetch = true;
     };
   };
 
