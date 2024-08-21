@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixos.url = "nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,12 +15,9 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixfmt.url = "github:NixOS/nixfmt";
   };
 
   outputs = {
-    self,
-    nixos,
     nixpkgs,
     home-manager,
     nix-index-database,
@@ -38,7 +34,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.koehn = import ./home.nix;
+            users.koehn = import ./home-manager/default.nix;
           };
           programs.nix-index-database.comma.enable = true;
         }

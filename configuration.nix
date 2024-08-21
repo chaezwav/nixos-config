@@ -148,6 +148,7 @@
       hw-probe
       git
       bat
+      tldr
     ];
     gnome.excludePackages =
       (with pkgs; [
