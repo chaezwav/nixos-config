@@ -5,6 +5,7 @@
     extensions = with pkgs.vscode-extensions; [
       mkhl.direnv
       jnoortheen.nix-ide
+      pkief.material-icon-theme
     ];
     userSettings = {
       nix.enableLanguageServer = true;
@@ -16,6 +17,7 @@
       window.titleBarStyle = "custom";
       update.mode = "none";
       git.autofetch = true;
+      workbench.iconTheme = "material-icon-theme";
     };
   };
 }
