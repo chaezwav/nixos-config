@@ -85,5 +85,6 @@
     tldr
     spotify
     inkscape
+    ladybird
   ];
 }
