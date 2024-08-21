@@ -75,7 +75,7 @@
       nix.serverSettings.nil.formatting.command = ["${pkgs.alejandra}/bin/alejandra"];
       terminal.integrated.shell.linux = "${pkgs.zsh}/bin/zsh";
       editor.formatOnSave = true;
-      window.titleBarStyle = "native";
+      window.titleBarStyle = "custom";
       update.mode = "none";
       git.autofetch = true;
     };

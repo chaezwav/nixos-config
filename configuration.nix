@@ -13,6 +13,7 @@
 
   # Bootloader.
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = ["nvidia_drm.fbdev=1"];
     loader.grub = {
       enable = true;
@@ -132,7 +133,6 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "~/nixos-config";
   };
 
   # List packages installed in system profile. To search, run:
