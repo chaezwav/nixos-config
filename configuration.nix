@@ -98,6 +98,7 @@
     description = "Koehn Humphries";
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
+    initialPassword = "12345";
   };
 
   # Install firefox.
