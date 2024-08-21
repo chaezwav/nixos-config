@@ -23,8 +23,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      switch = "nh os switch";
-      boot = "nh os boot --ask && sudo reboot";
+      switch = "nh os switch ~/nixos-config";
+      boot = "nh os boot --ask ~/nixos-config && sudo reboot";
     };
   };
 
