@@ -23,11 +23,8 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      rswitch = "sudo nixos-rebuild switch";
-      rboot = "sudo nixos-rebuild boot && sudo reboot";
-      chome = "gnome-text-editor ~/nixos-config/home.nix";
-      csys = "gnome-text-editor ~/nixos-config/configuration.nix";
-      cflake = "gnome-text-editor ~/nixos-config/flake.nix";
+      switch = "nh os switch";
+      boot = "nh os boot --ask && sudo reboot";
     };
   };
 
@@ -85,6 +82,5 @@
     tldr
     spotify
     inkscape
-    ladybird
   ];
 }
